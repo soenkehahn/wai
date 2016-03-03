@@ -26,4 +26,4 @@ spec = do
         let mkApp = return $ \ _request _respond -> throwIO $ ErrorCall "foo"
         (withApplication mkApp $ \ port -> do
             readProcess "curl" ["-s", "localhost:" ++ show port] "")
-          `shouldThrow` (== ErrorCall "foo")
+          `shouldThrow` (errorCall "foo")
